@@ -1,0 +1,15 @@
+{"appointments": [
+	{"id" : "000000001",
+	"branchOfficerName" : "John Doe",
+	"customerName" : "Philip Wong",
+	"appointmentTime" : "11/21/2018",
+	"duration" : "45"
+	},
+	{"id" : "000000002",
+	"branchOfficerName" : "Jamie Lang",
+	"customerName" : "Jordon Campher",
+	"appointmentTime" : "11/22/2018",
+	"duration" : "60"
+	}
+	]
+}
