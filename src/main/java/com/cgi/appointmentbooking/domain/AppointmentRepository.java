@@ -8,10 +8,11 @@ import java.util.List;
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.springframework.stereotype.Repository;
 
-
-public class AppointmentRepository<T> {
-    private List<Appointment> elements = Collections.synchronizedList(new ArrayList<Appointment>());
+@Repository
+public class AppointmentRepository<T extends Identifiable> {
+    private List<Appointment> elements = Collections.synchronizedList(new ArrayList<>());
 
 	protected void updateIfExists(Appointment original, Appointment updated) {
         original.setAppointmentTime(updated.getAppointmentTime());
@@ -28,7 +29,11 @@ public class AppointmentRepository<T> {
 			
 		//	Appointment appointment = mapper.readValue("resouces/AppointmentData.json", Appointment.class);
 		//	System.out.println("Json object is" + appointment.getBranchOfficerName() );
-			 elements = mapper.readValue("resouces/AppointmentData.json", ArrayList.class);
+			System.out.println("Inside the Repository method" );
+			
+			elements = mapper.readValue("resouces/AppointmentData.json", ArrayList.class);
+			System.out.println("ReadValue is done" );
+			
 		}catch(JsonGenerationException e) {
 			e.printStackTrace();
 		}catch(JsonMappingException e){
