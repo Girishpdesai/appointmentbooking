@@ -2,7 +2,7 @@
    "kind": "Template",
    "apiVersion": "v1",
    "metadata": {
-      "name": "appointmenter",
+      "name": "scheduler",
       "annotations": {
          "iconClass": "icon-jboss",
          "description": "Application template for appointment booking using S2I"
