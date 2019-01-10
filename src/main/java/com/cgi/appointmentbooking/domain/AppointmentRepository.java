@@ -1,27 +1,22 @@
 package com.cgi.appointmentbooking.domain;
 
-import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.map.ObjectMapper;
-import org.springframework.stereotype.Repository;
-import com.cgi.appointmentbooking.domain.Identifiable;
-import com.fasterxml.jackson.core.type.TypeReference;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.springframework.stereotype.Repository;
 
 @Repository
 public class AppointmentRepository<T extends Identifiable> {
  //   private List<Appointment> elements = Collections.synchronizedList(new ArrayList<>());
-	   private List<Appointment> elements = new ArrayList();
+	   private List<Appointment> elements = new ArrayList<Appointment>();
 
 	protected void updateIfExists(Appointment original, Appointment updated) {
         original.setAppointmentTime(updated.getAppointmentTime());
@@ -32,7 +27,6 @@ public class AppointmentRepository<T extends Identifiable> {
     }
 	@SuppressWarnings("unchecked")
 	public List<Appointment> findAll (){
-		ObjectMapper mapper= new ObjectMapper();
 		
 		try {
 			
@@ -70,23 +64,6 @@ public class AppointmentRepository<T extends Identifiable> {
 		
 		return elements;
 		
-	}
-	private String readFile(String file) throws IOException {
-	    BufferedReader reader = new BufferedReader(new FileReader (file));
-	    String         line = null;
-	    StringBuilder  stringBuilder = new StringBuilder();
-	    String         ls = System.getProperty("line.separator");
-
-	    try {
-	        while((line = reader.readLine()) != null) {
-	            stringBuilder.append(line);
-	            stringBuilder.append(ls);
-	        }
-
-	        return stringBuilder.toString();
-	    } finally {
-	        reader.close();
-	    }
 	}
 
 }
