@@ -5,9 +5,9 @@
       "name": "appointmentbooking",
       "annotations": {
          "iconClass": "icon-jboss",
-         "description": "Application template for appointment booking & MySQL using S2I"
-      }
-   },
+         "description": "Application template for appointment booking using S2I"
+    	  }
+   		},
    "labels": {
       "application": "appointmentbooking",
       "createdBy": "template-appointment"
@@ -60,13 +60,7 @@
          },
          "spec": {
             "triggers": [
-               {
-                  "type": "Generic",
-                  "generic": {
-                     "secret": "${GENERIC_TRIGGER_SECRET}"
-                  }
-               },
-               {
+                 {
                   "type": "GitHub",
                   "github": {
                      "secret": "${GITHUB_TRIGGER_SECRET}"
@@ -89,40 +83,52 @@
                "sourceStrategy": {
                   "from": {
                      "kind": "ImageStreamTag",
-                     "namespace": "openshift",
-                     "name": "jboss-eap64-openshift:latest"
-                  },
-                  "env": [
-                     {
-                        "name": "MAVEN_MIRROR_URL",
-                        "value": "${MAVEN_MIRROR_URL}"
-                     }
-                  ]
+                     "name": "springboot-maven3-centos:latest"
+                  }
                }
             },
             "output": {
                "to": {
                   "kind": "ImageStreamTag",
-                  "name": "${APPLICATION_NAME}:latest"
+                  "name": "${APPLICATION_NAME}:1.0.0"
                }
             }
          }
       },
       {
-         "kind": "ImageStream",
-         "apiVersion": "v1",
-         "metadata": {
-            "name": "${APPLICATION_NAME}"
-         },
-         "spec": {
-            "dockerImageRepository": "",
-            "tags": [
-               {
-                  "name": "latest"
-               }
-            ]
-         }
-      },
+		  "kind": "ImageStream",
+		  "apiVersion": "v1",
+		  "metadata": {
+		    "name": "springboot-maven3-centos",
+		    "namespace": "codecentric"
+		   },
+		  "spec": {},
+		  "status": {
+		    "dockerImageRepository": "https://hub.docker.com/r/codecentric/springboot-maven3-centos/",
+		    "tags": [
+		      {
+		        "tag": "latest"        
+		      }
+		    ]
+		  }
+		},
+      {
+		"kind": "ImageStream",
+		"apiVersion": "v1",
+		"metadata": {
+			"name": "${APPLICATION_NAME}"
+		},
+		"spec": {
+			 "dockerImageRepository": "",
+              "tags": [
+                     {
+                        "name": "latest"
+                     }
+                  ]
+		
+		}
+     },
+     
       {
          "kind": "DeploymentConfig",
          "apiVersion": "v1",
@@ -134,7 +140,7 @@
          },
          "spec": {
             "strategy": {
-               "type": "Recreate"
+               "type": "Rolling"
             },
             "triggers": [
                {
@@ -197,16 +203,7 @@
                                     "port": 8080
                                     }
                         },
-                        "env": [
-                           {
-                              "name": "OPENSHIFT_DNS_PING_SERVICE_NAME",
-                              "value": "${APPLICATION_NAME}-ping"
-                           },
-                           {
-                              "name": "OPENSHIFT_DNS_PING_SERVICE_PORT",
-                              "value": "8888"
-                           }
-                        ],
+                       
                         "resources": {},
                         "terminationMessagePath": "/dev/termination-log",
                         "imagePullPolicy": "Always",
@@ -252,6 +249,7 @@
          "spec": {
             "ports": [
                {
+                  "name": "${APPLICATION_NAME}-http",
                   "protocol": "TCP",
                   "port": 8080,
                   "targetPort": 8080
@@ -259,29 +257,11 @@
             ],
             "selector": {
                "deploymentConfig": "${APPLICATION_NAME}"
-            }
-         }
-      },
-      {
-         "kind": "Service",
-         "apiVersion": "v1",
-         "metadata": {
-            "name": "${APPLICATION_NAME}-ping",
-            "annotations": {
-               "description": "Ping service for clustered applications"
-            }
-         },
-         "spec": {
-            "ports": [
-               {
-                  "port": 8888,
-                  "targetPort": 8888
-               }
-            ],
-            "selector": {
-               "deploymentConfig": "${APPLICATION_NAME}"
-            }
+            },
+             "type": "ClusterIP",
+            "sessionAffinity": "None"
          }
       }
+     
    ]
 }
