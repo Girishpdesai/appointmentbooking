@@ -15,7 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cgi.appointmentbooking.assembler.AppointmentResourceAssembler;
 import com.cgi.appointmentbooking.domain.Appointment;
 import com.cgi.appointmentbooking.domain.AppointmentRepository;
-import com.cgi.appointmentbooking.presentation.AppointmentResource;;
+import com.cgi.appointmentbooking.domain.AppointmentRepository;
+import com.cgi.appointmentbooking.presentation.AppointmentResource;
 
 @CrossOrigin(origins = "*")
 @RestController
