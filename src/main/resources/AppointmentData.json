@@ -1,4 +1,4 @@
-{"appointments": [
+{"Appointments":[
 	{"id" : "000000001",
 	"branchOfficerName" : "John Doe",
 	"customerName" : "Philip Wong",
@@ -11,5 +11,5 @@
 	"appointmentTime" : "11/22/2018",
 	"duration" : "60"
 	}
-	]
+]
 }
