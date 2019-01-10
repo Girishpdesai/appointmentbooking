@@ -16,7 +16,7 @@
       {
          "description": "The name for the application.",
          "name": "APPLICATION_NAME",
-         "value": "appointmentbooking"
+         "value": "scheduler"
       },
       {
          "description": "Custom hostname for service routes.",
