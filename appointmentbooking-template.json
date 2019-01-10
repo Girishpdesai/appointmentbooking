@@ -9,7 +9,7 @@
     	  }
    		},
    "labels": {
-      "application": "appointmentbooking",
+      "application": "scheduler",
       "createdBy": "template-appointment"
    },
    "parameters": [
