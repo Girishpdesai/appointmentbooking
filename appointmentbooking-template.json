@@ -83,7 +83,7 @@
                "sourceStrategy": {
                   "from": {
                      "kind": "ImageStreamTag",
-                     "name": "springboot-maven3-centos:latest"
+                     "name": "springboot-maven3-centos"
                   }
                }
             },
@@ -104,12 +104,8 @@
 		   },
 		  "spec": {},
 		  "status": {
-		    "dockerImageRepository": "https://hub.docker.com/r/codecentric/springboot-maven3-centos/",
-		    "tags": [
-		      {
-		        "tag": "latest"        
-		      }
-		    ]
+		    "dockerImageRepository": "https://hub.docker.com/r/codecentric/springboot-maven3-centos/"
+		    
 		  }
 		},
       {
