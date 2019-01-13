@@ -111,23 +111,7 @@
             }
          }
       },
-     {
-		"kind": "ImageStream",
-		"apiVersion": "v1",
-		"metadata": {
-			"name": "${APPLICATION_NAME}"
-		},
-		"spec": {
-			 "dockerImageRepository": "",
-              "tags": [
-                     {
-                        "name": "latest"
-                     }
-                  ]
-		
-		}
-     },
-     
+      
       {
          "kind": "DeploymentConfig",
          "apiVersion": "v1",
@@ -151,7 +135,7 @@
                      ],
                      "from": {
                         "kind": "ImageStreamTag",
-                        "name": "${APPLICATION_NAME}:latest"
+                        "name": "${APPLICATION_NAME}:1.0.0"
                      }
                   }
                },
