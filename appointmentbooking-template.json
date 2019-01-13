@@ -53,6 +53,22 @@
     ],
    "objects": [
       {
+		  "kind": "ImageStream",
+		  "apiVersion": "v1",
+		  "metadata": {
+		    "name": "springboot-maven3-centos"
+		    },
+		  "spec": {
+			"dockerImageRepository": "docker.io/codecentric/springboot-maven3-centos",
+	    	"tags": [
+	    		{
+	    			"name":"1.4"
+	    		}
+	    		]
+	    		 
+	    	 }
+	  },
+       {
          "kind": "BuildConfig",
          "apiVersion": "v1",
          "metadata": {
@@ -83,7 +99,7 @@
                "sourceStrategy": {
                   "from": {
                      "kind": "ImageStreamTag",
-                     "name": "springboot-maven3-centos"
+                     "name": "springboot-maven3-centos:1.4"
                   }
                }
             },
@@ -95,20 +111,7 @@
             }
          }
       },
-      {
-		  "kind": "ImageStream",
-		  "apiVersion": "v1",
-		  "metadata": {
-		    "name": "springboot-maven3-centos",
-		    "namespace": "codecentric"
-		   },
-		  "spec": {},
-		  "status": {
-		    "dockerImageRepository": "https://hub.docker.com/r/codecentric/springboot-maven3-centos/"
-		    
-		  }
-		},
-      {
+     {
 		"kind": "ImageStream",
 		"apiVersion": "v1",
 		"metadata": {
