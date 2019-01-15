@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cgi.appointmentbooking.assembler.AppointmentResourceAssembler;
 import com.cgi.appointmentbooking.domain.Appointment;
 import com.cgi.appointmentbooking.domain.AppointmentRepository;
-import com.cgi.appointmentbooking.domain.AppointmentRepository;
+
 import com.cgi.appointmentbooking.presentation.AppointmentResource;
 
 @CrossOrigin(origins = "*")
@@ -32,7 +32,9 @@ public class AppointmentController {
 	
 	@RequestMapping(method= RequestMethod.GET)
 	public ResponseEntity<Collection<AppointmentResource>> findAllAppointments(){
+		System.out.println("The findall is starting" );
 		List<Appointment> appointments = repository.findAll();
+		System.out.println("This list is " + appointments.toString());
 		return new ResponseEntity<>(assembler.toResourceCollection(appointments), HttpStatus.OK);
 		
 	}
