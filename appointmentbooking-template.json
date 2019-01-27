@@ -189,7 +189,7 @@
                                   "timeoutSeconds": 60,
                                   "initialDelaySeconds": 60,
                                   "httpGet": {
-                                    "path": "/appointment",
+                                    "path": "/actuator/health",
                                     "port": 9088
                                   }
                                 },
@@ -197,7 +197,7 @@
                                   "timeoutSeconds": 60,
                                   "initialDelaySeconds": 60,
                                   "httpGet": {
-                                    "path": "/appointment",
+                                    "path": "/actuator/health",
                                     "port": 9088
                                     }
                         },
