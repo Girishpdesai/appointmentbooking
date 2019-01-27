@@ -176,29 +176,29 @@
                         "ports": [
                            {
                               "name": "${APPLICATION_NAME}-http",
-                              "containerPort": 8080,
+                              "containerPort": 9088,
                               "protocol": "TCP"
                            },
                            {
                               "name": "${APPLICATION_NAME}-ping",
-                              "containerPort": 8888,
+                              "containerPort": 9088,
                               "protocol": "TCP"
                            }
                         ],
                                 "readinessProbe": {
-                                  "timeoutSeconds": 30,
-                                  "initialDelaySeconds": 30,
+                                  "timeoutSeconds": 60,
+                                  "initialDelaySeconds": 60,
                                   "httpGet": {
-                                    "path": "/",
-                                    "port": 8080
+                                    "path": "/appointment",
+                                    "port": 9088
                                   }
                                 },
                                 "livenessProbe": {
-                                  "timeoutSeconds": 30,
-                                  "initialDelaySeconds": 30,
+                                  "timeoutSeconds": 60,
+                                  "initialDelaySeconds": 60,
                                   "httpGet": {
-                                    "path": "/",
-                                    "port": 8080
+                                    "path": "/appointment",
+                                    "port": 9088
                                     }
                         },
                        
@@ -249,8 +249,8 @@
                {
                   "name": "${APPLICATION_NAME}-http",
                   "protocol": "TCP",
-                  "port": 8080,
-                  "targetPort": 8080
+                  "port": 9088,
+                  "targetPort": 9088
                }
             ],
             "selector": {
